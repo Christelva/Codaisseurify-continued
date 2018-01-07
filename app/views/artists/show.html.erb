@@ -51,27 +51,49 @@ body {
     <h4><i><%= @artist.bio %></i></h4>
 
   </div>
-  <div class="row-3"
-  <h2><b>Songs</b></h2>
+  <div class="row-3">
+    <table class="table">
+
+
+  <caption><h2><b>Songs</b></h2></caption>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
        <% if @artist.songs.any? %>
 
            <% @artist.songs.each do |song| %>
-             <p class="title"><%= song.title %> </p>
-             <p><%= link_to "Remove song", song_path(song.id), method: :delete, data: { confirm: "By pressing Ok you will be deleting this song. Are you sure you would like to continue?" } %></p>
+          <tr>
+             <td><p class="title"><%= song.title %> </p></td>
+             <td><p><%= link_to "Remove song", artist_path(song.id), method: :delete, data: { confirm: "are you sure?" }, class: "btn btn-danger" %></p></td>
            <% end %>
 
        <% else %>
-         <p>This artist has no songs.</p>
+         <td><p>This artist has no songs.</p></td>
+      </tr>
        <% end %>
+     </tbody>
+         </table>
+
      </div>
 </div>
 
+
 </div>
 
 
+
+
 <div class="row-4">
-<p><%= link_to "Add a song", new_song_path%></p>
+
 
 <p><%= link_to "Delete Artist", artist_path(@artist.id), method: :delete, data: { confirm: "Are you sure?" } %></p>
 <p><%= link_to "Back", artists_path%></p>
 </div>
+
+<script type="text/javascript">
+
+</script>
