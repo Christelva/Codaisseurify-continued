@@ -1,0 +1,29 @@
+<%= form_for Song.new do |f| %>
+
+<% if @song != nil %>
+  <% @song.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<% if @artist != nil %>
+  <% @artist.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<div>
+    <label for="title">Song Title</label>
+  <p>  <%= f.text_field :title, placeholder: "Song Title", class: "form-control" %></p>
+</div>
+
+<div>
+    <label for="artist">Artist</label>
+    <%= f.label :artist_id %>
+    <%= f.collection_select(:artist_id, Artist.all, :id, :name) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create song", class: "btn btn-info" %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<style>
+
+body {
+  text-align: center;
+  padding: 20px;
+  background-color: 	#D0D0D0;
+
+
+}
+
+a{
+  color: white;
+}
+.thumbnail {
+  background-color: 	#888888;
+}</style>
+
+<div class="row">
+  <div class="jumbotron">
+    <h1>
+  <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+ Codaisseurify <span class="glyphicon glyphicon-music" aria-hidden="true"></span></h1>
+
+</div>
+  <% @artists.each do |artist| %>
+    <div class="col-lg-6 col-sm-6">
+      <div class="thumbnail">
+        <% artist.photos.each do |photo| %>
+          <%= image_tag photo.image %>
+        <% end %>
+        <div class="caption">
+          <h4><%= link_to artist.name, artist  %></h4>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

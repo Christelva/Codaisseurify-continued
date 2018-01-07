@@ -1,0 +1,77 @@
+<style>
+body {
+  text-align: center;
+
+    padding: 20px;
+    background-color: 	#D0D0D0;
+
+
+
+}
+ .row-1, .row-2, .row-3,.row-4 {
+   padding-top: 10%;
+ }
+
+
+ .thumbnail {
+   background-color: 	#888888;}
+
+
+   }
+.title {
+  font-size: 35px;
+}
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="jumbotron">
+      <h1>
+    <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+   <%= @artist.name %> <span class="glyphicon glyphicon-music" aria-hidden="true"></span></h1>
+
+  </div>
+
+</div>
+  </div>
+
+  <div class="row-1">
+    <div class="col-lg-6 col-sm-6">
+       <% @artist.photos.each do |photo| %>
+      <%= image_tag photo.image %>
+      <%end%>
+
+</div>
+</div>
+
+<div class="col-lg-6 col-sm-6">
+<div class="row-2">
+
+    <h3><b>Name</b>: <%= @artist.name %></h3>
+    <h4><i><%= @artist.bio %></i></h4>
+
+  </div>
+  <div class="row-3"
+  <h2><b>Songs</b></h2>
+       <% if @artist.songs.any? %>
+
+           <% @artist.songs.each do |song| %>
+             <p class="title"><%= song.title %> </p>
+             <p><%= link_to "Remove song", song_path(song.id), method: :delete, data: { confirm: "By pressing Ok you will be deleting this song. Are you sure you would like to continue?" } %></p>
+           <% end %>
+
+       <% else %>
+         <p>This artist has no songs.</p>
+       <% end %>
+     </div>
+</div>
+
+</div>
+
+
+<div class="row-4">
+<p><%= link_to "Add a song", new_song_path%></p>
+
+<p><%= link_to "Delete Artist", artist_path(@artist.id), method: :delete, data: { confirm: "Are you sure?" } %></p>
+<p><%= link_to "Back", artists_path%></p>
+</div>
